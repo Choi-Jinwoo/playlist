@@ -10,6 +10,8 @@ const theme = {
     main3: '#E4D8DC',
     main4: '#FFE3E3',
     black: '#1b1e23',
+    white: '#ffffff',
+    white2: '#f7f2f4',
   },
   fontSize: {
     xxxLarge: '2rem',
