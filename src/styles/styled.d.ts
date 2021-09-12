@@ -16,6 +16,7 @@ declare module 'styled-components' {
       black: string;
     },
     fontSize: {
+      xxLarge: string;
       xLarge: string;
       large: string;
       medium: string;

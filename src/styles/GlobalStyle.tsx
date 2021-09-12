@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: Interop, sans-serif;
     background-color: ${theme.color.main3}
   }
+
+  * {
+    box-sizing: border-box;
+  }
 `;
 
 export default GlobalStyle;

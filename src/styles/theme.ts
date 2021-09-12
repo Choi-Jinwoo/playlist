@@ -12,6 +12,8 @@ const theme = {
     black: '#1b1e23',
   },
   fontSize: {
+    xxxLarge: '2rem',
+    xxLarge: '1.75rem',
     xLarge: '1.5rem',
     large: '1.25rem',
     medium: '1rem',
