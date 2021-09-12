@@ -9,6 +9,7 @@ const theme = {
     main2: '#C9CCD5',
     main3: '#E4D8DC',
     main4: '#FFE3E3',
+    black: '#1b1e23',
   },
   fontSize: {
     xLarge: '1.5rem',
