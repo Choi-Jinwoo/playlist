@@ -1,11 +1,13 @@
 import React from 'react';
 import { Route } from 'react-router';
+import PageTemplate from './components/common/PageTemplate';
+import HomePage from './pages/HomePage';
 
 const Routes = (): JSX.Element => {
   return (
-    <>
-      <Route exact path="/" component={() => <div>hi</div>} />
-    </>
+    <PageTemplate>
+      <Route exact path="/" component={HomePage} />
+    </PageTemplate>
   );
 };
 
