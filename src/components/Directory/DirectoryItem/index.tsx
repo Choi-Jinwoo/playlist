@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Directory } from '../../models/directory';
-import theme from '../../styles/theme';
-import Text from '../common/Text';
+import { Directory } from '../../../models/directory';
+import theme from '../../../styles/theme';
+import Text from '../../common/Text';
 
 const Container = styled.div`
   position: relative;
-  width: 300px;
+  width: 380px;
   height: 300px;
   overflow: hidden;
   border-radius: 10px;
