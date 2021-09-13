@@ -8,7 +8,7 @@ const Routes = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Route exact path="/" component={HomePage} />
-      <Route exact path="/hi" component={PlaylistPage} />
+      <Route exact path="/playlist" component={PlaylistPage} />
     </BrowserRouter>
   );
 };
