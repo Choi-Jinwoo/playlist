@@ -5,9 +5,19 @@ import { FaPlay, FaPause } from 'react-icons/fa';
 import theme from '../../../styles/theme';
 import { seconds2MinuteSeconds } from '../../../utils/formatter';
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 const ButtonControlsWrapper = styled.div`
+  margin: 20px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .icon {
     cursor: pointer;
     color: ${props => props.theme.color.main1};
