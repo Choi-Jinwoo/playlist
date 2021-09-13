@@ -2,8 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import useDirectories from '../../../hooks/useDirectories';
 import DirectoryItem from '../DirectoryItem';
+import Text from '../../common/Text';
+import theme from '../../../styles/theme';
 
 const Container = styled.div`
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 60px 0px;
+`;
+
+const ListWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
@@ -18,7 +30,12 @@ const DirectoryList = (): JSX.Element => {
 
   return (
     <Container>
-      {DirectoryItems}
+      <TitleWrapper>
+        <Text size={theme.fontSize.xxxLarge} color={theme.color.main1} weight='bold'>Playlist</Text>
+      </TitleWrapper>
+      <ListWrapper>
+        {DirectoryItems}
+      </ListWrapper>
     </Container>
   );
 };

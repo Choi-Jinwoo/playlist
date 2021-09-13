@@ -26,6 +26,7 @@ const Container = styled.div`
 const CoverImage = styled.img.attrs({
   className: 'cover-image',
 })`
+  object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -39,7 +40,7 @@ const CoverBackground = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color:${props => props.theme.color.black}90;
+  background-color:${props => props.theme.color.black}80;
   backdrop-filter: blur(5px);
   z-index: 2;
 `;
