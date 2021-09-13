@@ -60,7 +60,7 @@ const CDPlayer = ({ thumbnail, isPaused }: Props): JSX.Element => {
     <Container>
       <CD isPaused={isPaused}>
         <CDHole />
-        <CDImage src={thumbnail} />
+        <CDImage src={thumbnail} alt="album image" />
       </CD>
     </Container>
   );

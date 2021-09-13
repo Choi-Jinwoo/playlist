@@ -1,9 +1,9 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import Text from '../../common/Text';
+import Text from '../../../common/Text';
 import { FaPlay, FaPause } from 'react-icons/fa';
-import theme from '../../../styles/theme';
-import { seconds2MinuteSeconds } from '../../../utils/formatter';
+import theme from '../../../../styles/theme';
+import { seconds2MinuteSeconds } from '../../../../utils/formatter';
 
 const Container = styled.div`
   display: flex;
@@ -28,6 +28,10 @@ const TimelineWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  & > p {
+    width: 50px;
+  }
 `;
 
 const Timeline = styled.div`
@@ -40,14 +44,9 @@ const Timeline = styled.div`
   overflow: hidden;
 `;
 
-type PassedTimelineProps = {
-  scaleX: number;
-}
-
-const PassedTimeline = styled.div<PassedTimelineProps>`
+const PassedTimeline = styled.div`
   position: absolute;
   transform-origin: left;
-  transform: scaleX(${props => props.scaleX});
   width: 100%;
   height: 100%;
   left: 0px;
@@ -71,6 +70,7 @@ const AudioControls = ({
   currentTime,
   duration,
 }: Props): JSX.Element => {
+  const passedTimelineRef = useRef<HTMLDivElement>(null);
   const scaleX = currentTime / duration;
 
   const handleTimelineClicked = (e: MouseEvent<HTMLDivElement>) => {
@@ -79,6 +79,11 @@ const AudioControls = ({
     const time = (x / 500) * duration;
     handleJumpTo(time);
   };
+
+  useEffect(() => {
+    if (passedTimelineRef.current === null) return;
+    passedTimelineRef.current.style.transform = `scaleX(${scaleX})`;
+  }, [scaleX]);
 
   return (
     <Container>
@@ -94,7 +99,7 @@ const AudioControls = ({
           color={theme.color.main1}
         >{seconds2MinuteSeconds(currentTime)}</Text>
         <Timeline onClick={handleTimelineClicked}>
-          <PassedTimeline scaleX={scaleX} />
+          <PassedTimeline ref={passedTimelineRef} />
         </Timeline>
       </TimelineWrapper>
     </Container >
