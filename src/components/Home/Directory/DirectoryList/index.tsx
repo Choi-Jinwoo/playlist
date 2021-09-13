@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import useDirectories from '../../../hooks/useDirectories';
+import useDirectories from '../../../../hooks/useDirectories';
 import DirectoryItem from '../DirectoryItem';
-import Text from '../../common/Text';
-import theme from '../../../styles/theme';
+import Text from '../../../common/Text';
+import theme from '../../../../styles/theme';
 
 const Container = styled.div`
 `;
