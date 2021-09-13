@@ -1,14 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import PageTemplate from '../components/common/PageTemplate';
 import DirectoryList from '../components/Directory/DirectoryList';
-
-const Container = styled.div``;
 
 const HomePage = (): JSX.Element => {
   return (
-    <Container>
+    <PageTemplate>
       <DirectoryList />
-    </Container>
+    </PageTemplate>
   );
 };
 

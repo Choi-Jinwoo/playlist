@@ -1,13 +1,15 @@
 import React from 'react';
 import { Route } from 'react-router';
-import PageTemplate from './components/common/PageTemplate';
+import { BrowserRouter } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import PlaylistPage from './pages/PlaylistPage';
 
 const Routes = (): JSX.Element => {
   return (
-    <PageTemplate>
+    <BrowserRouter>
       <Route exact path="/" component={HomePage} />
-    </PageTemplate>
+      <Route exact path="/hi" component={PlaylistPage} />
+    </BrowserRouter>
   );
 };
 
