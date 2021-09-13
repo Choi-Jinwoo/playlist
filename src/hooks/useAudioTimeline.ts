@@ -1,6 +1,7 @@
-import { RefObject, useEffect, useState } from 'react';
+import { RefObject, useCallback, useEffect, useState } from 'react';
 
-const TIMELINE_SYNC_INTERVAL = 1000;
+const TIMELINE_SYNC_INTERVAL = 10;
+const SKIP_SECONDS = 5;
 
 type UseAudioTimeline = [number, number, (second: number) => void];
 
@@ -8,12 +9,21 @@ const useAudioTimeline = (audioRef: RefObject<HTMLAudioElement>): UseAudioTimeli
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const handleJumpTo = (second: number) => {
+  const handleJumpTo = useCallback((second: number) => {
     if (audioRef.current === null) return;
 
     audioRef.current.currentTime = second;
     setCurrentTime(second);
-  };
+  }, [audioRef]);
+
+  const handleKeyPressed = useCallback((e: KeyboardEvent) => {
+    switch (e.key) {
+      case 'ArrowLeft':
+        return handleJumpTo(currentTime - SKIP_SECONDS);
+      case 'ArrowRight':
+        return handleJumpTo(currentTime + SKIP_SECONDS);
+    }
+  }, [currentTime, handleJumpTo]);
 
   useEffect(() => {
     if (audioRef.current === null) return;
@@ -36,7 +46,13 @@ const useAudioTimeline = (audioRef: RefObject<HTMLAudioElement>): UseAudioTimeli
       if (timer === null) return;
       clearInterval(timer);
     };
-  });
+  }, [audioRef]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyPressed);
+
+    return () => window.removeEventListener('keydown', handleKeyPressed);
+  }, [handleKeyPressed]);
 
   return [currentTime, duration, handleJumpTo];
 };
