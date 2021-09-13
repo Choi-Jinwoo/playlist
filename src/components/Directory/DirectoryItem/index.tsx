@@ -1,16 +1,36 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Directory } from '../../../models/directory';
 import theme from '../../../styles/theme';
 import Text from '../../common/Text';
 
-const Container = styled.div`
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`;
+
+type ContainerProps = {
+  sequence: number;
+}
+
+const Container = styled.div<ContainerProps>`
+  opacity: 0;
   position: relative;
   width: 380px;
   height: 300px;
   overflow: hidden;
   border-radius: 10px;
   cursor: pointer;
+  animation: ${fadeIn} 0.8s;
+  animation-delay: ${props => props.sequence * 0.1}s;
+  animation-fill-mode: forwards;
 
   &:hover {
     .cover-image {
@@ -81,12 +101,13 @@ const TextEmphasizeBackground = styled.div.attrs({
 
 type Props = {
   directory: Directory;
+  sequence: number;
 }
 
-const DirectoryItem = ({ directory }: Props): JSX.Element => {
+const DirectoryItem = ({ sequence, directory }: Props): JSX.Element => {
   const { title, description, thumbnail } = directory;
   return (
-    <Container>
+    <Container sequence={sequence}>
       <CoverImage src={thumbnail} />
       <CoverBackground />
       <ContentsWrapper>

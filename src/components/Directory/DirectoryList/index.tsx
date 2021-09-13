@@ -26,7 +26,7 @@ const DirectoryList = (): JSX.Element => {
   const [directories] = useDirectories();
 
   const DirectoryItems = directories
-    .map(directory => <DirectoryItem key={directory.id} directory={directory} />);
+    .map((directory, index) => <DirectoryItem key={directory.id} sequence={index} directory={directory} />);
 
   return (
     <Container>
