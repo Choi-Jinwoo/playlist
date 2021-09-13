@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 const Container = styled.div``;
 
@@ -13,7 +13,11 @@ const rotate = keyframes`
   }
 `;
 
-const CD = styled.div`
+type CDProps = {
+  isPaused: boolean;
+}
+
+const CD = styled.div<CDProps>`
   background-color: ${props => props.theme.color.black};
   position: relative;
   width: 400px;
@@ -21,6 +25,9 @@ const CD = styled.div`
   border-radius: 50%;
   overflow: hidden;
   animation: ${rotate} 8s linear infinite;
+  ${props => props.isPaused && css`
+    animation-play-state: paused;
+  `}
 `;
 
 const CDImage = styled.img`
@@ -29,25 +36,29 @@ const CDImage = styled.img`
   object-fit: cover;
 `;
 
+const HOLE_SIZE = 120;
+
 const CDHole = styled.div`
   position: absolute;
   background-color: ${props => props.theme.color.white2};
-  bottom: calc(50% - 50px);
-  left: calc(50% - 50px);
-  width: 100px;
-  height: 100px;
+  background-clip: padding-box;
+  bottom: calc(50% - ${HOLE_SIZE / 2}px);
+  left: calc(50% - ${HOLE_SIZE / 2}px);
+  width: ${HOLE_SIZE}px;
+  height: ${HOLE_SIZE}px;
   border-radius: 50%;
-  border: 10px solid ${props => props.theme.color.main1}80;
+  border: 16px solid ${props => props.theme.color.main1}80;
 `;
 
 type Props = {
   thumbnail: string;
+  isPaused: boolean;
 }
 
-const CDPlayer = ({ thumbnail }: Props): JSX.Element => {
+const CDPlayer = ({ thumbnail, isPaused }: Props): JSX.Element => {
   return (
     <Container>
-      <CD>
+      <CD isPaused={isPaused}>
         <CDHole />
         <CDImage src={thumbnail} />
       </CD>
