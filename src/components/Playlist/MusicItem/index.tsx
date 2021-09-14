@@ -51,6 +51,7 @@ type Props = {
 
 const MusicItem = ({ music }: Props): JSX.Element => {
   const { title, singer, thumbnail } = music;
+
   return (
     <Container>
       <ThumbnailWrapper>

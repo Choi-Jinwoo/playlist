@@ -1,7 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import useAudioPause from '../../hooks/useAudioPause';
 import useAudioTimeline from '../../hooks/useAudioTimeline';
+import { RootState } from '../../reducers';
 import AudioControls from './AudioControls';
 import CDPlayer from './CDPlayer';
 
@@ -12,9 +14,14 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const Audio = styled.audio``;
+
+const Source = styled.source``;
+
 const Player = (): JSX.Element => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  const currentMusic = useSelector((state: RootState) => state.music.currentMusic);
   const [isPaused, handlePause, handlePlay] = useAudioPause(audioRef);
   const [currentTime, duration, handleJumpTo] = useAudioTimeline(audioRef);
 
@@ -30,12 +37,19 @@ const Player = (): JSX.Element => {
     }
   };
 
+  const thumbnail = currentMusic?.thumbnail ?? '';
+  const audioSource = currentMusic?.audioSource ?? '';
+
+  useEffect(() => {
+    audioRef.current?.load();
+  }, [audioSource]);
+
   return (
     <Container>
-      <audio ref={audioRef} hidden={true} onPause={handleAutoPaused} onPlay={handleAutoPlay} >
-        <source src="/music/merry-christmas.mp3" />
-      </audio>
-      <CDPlayer isPaused={isPaused} thumbnail="https://t1.daumcdn.net/cfile/tistory/2643F34C59242C8E26" />
+      <Audio ref={audioRef} hidden={true} onPause={handleAutoPaused} onPlay={handleAutoPlay} >
+        <Source src={audioSource} />
+      </Audio>
+      <CDPlayer isPaused={isPaused} thumbnail={thumbnail} />
       <AudioControls
         handleJumpTo={handleJumpTo}
         currentTime={currentTime}
