@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Music } from '../../models/music';
 import Text from '../common/Text';
 
 const Container = styled.div`
@@ -39,14 +40,19 @@ const Thumbnail = styled.img`
   object-fit: cover;
 `;
 
-const MusicItem = (): JSX.Element => {
+type Props = {
+  music: Music;
+}
+
+const MusicItem = ({ music }: Props): JSX.Element => {
+  const { title, singer, thumbnail } = music;
   return (
     <Container>
       <ThumbnailWrapper>
-        <Thumbnail src="https://t1.daumcdn.net/cfile/tistory/2643F34C59242C8E26" />
+        <Thumbnail src={thumbnail} />
       </ThumbnailWrapper>
-      <Text className="center">Santa tell me</Text>
-      <Text className="right">아리아나 그란데</Text>
+      <Text className="center">{title}</Text>
+      <Text className="right">{singer}</Text>
     </Container>
   );
 };
