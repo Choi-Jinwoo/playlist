@@ -1,6 +1,6 @@
 import React from 'react';
 import PageTemplate from '../components/common/PageTemplate';
-import Player from '../components/Playlist/Player';
+import Player from '../components/Player';
 
 const PlaylistPage = (): JSX.Element => {
   return (

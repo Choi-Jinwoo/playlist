@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import useAudioPause from '../../../hooks/useAudioPause';
-import useAudioTimeline from '../../../hooks/useAudioTimeline';
+import useAudioPause from '../../hooks/useAudioPause';
+import useAudioTimeline from '../../hooks/useAudioTimeline';
 import AudioControls from './AudioControls';
 import CDPlayer from './CDPlayer';
 
@@ -33,7 +33,7 @@ const Player = (): JSX.Element => {
   return (
     <Container>
       <audio ref={audioRef} hidden={true} onPause={handleAutoPaused} onPlay={handleAutoPlay} >
-        <source src="/music/santa-tell-me.mp3" />
+        <source src="/music/merry-christmas.mp3" />
       </audio>
       <CDPlayer isPaused={isPaused} thumbnail="https://t1.daumcdn.net/cfile/tistory/2643F34C59242C8E26" />
       <AudioControls

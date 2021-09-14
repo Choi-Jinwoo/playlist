@@ -1,9 +1,9 @@
 import React, { MouseEvent, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import Text from '../../../common/Text';
+import Text from '../../common/Text';
 import { FaPlay, FaPause } from 'react-icons/fa';
-import theme from '../../../../styles/theme';
-import { seconds2MinuteSeconds } from '../../../../utils/formatter';
+import theme from '../../../styles/theme';
+import { seconds2MinuteSeconds } from '../../../utils/formatter';
 
 const Container = styled.div`
   display: flex;
