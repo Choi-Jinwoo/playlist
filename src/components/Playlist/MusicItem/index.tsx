@@ -7,7 +7,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 500px;
+  width: 100%;
   padding: 10px;
 
   & > * {
@@ -19,12 +19,7 @@ const Container = styled.div`
     padding: 0px 5px;
   }
 
-  .center {
-    text-align: center;
-  }
-
-  .right {
-    text-align: right;
+  .center, .right {
     flex: 2;
   }
 `;
