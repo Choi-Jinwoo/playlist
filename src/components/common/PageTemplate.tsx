@@ -5,6 +5,7 @@ const Container = styled.div``;
 
 const Contents = styled.div`
   width: ${props => props.theme.innerWidth.desktop};
+  padding: 20px 0px;
   margin: 0 auto;
 `;
 
