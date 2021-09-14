@@ -9,6 +9,12 @@ const Container = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+
+  &:hover {
+    background-color: ${props => props.theme.color.main2}60;
+  }
 
   & > * {
     flex: 1;
