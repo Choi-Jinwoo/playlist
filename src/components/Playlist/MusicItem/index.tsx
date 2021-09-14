@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Music } from '../../models/music';
-import Text from '../common/Text';
+import { Music } from '../../../models/music';
+import Text from '../../common/Text';
 
 const Container = styled.div`
   display: flex;
