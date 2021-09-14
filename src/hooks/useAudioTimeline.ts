@@ -1,6 +1,6 @@
 import { RefObject, useCallback, useEffect, useState } from 'react';
 
-const TIMELINE_SYNC_INTERVAL = 10;
+const TIMELINE_SYNC_INTERVAL = 500;
 const SKIP_SECONDS = 5;
 
 type UseAudioTimeline = [number, number, (second: number) => void];
