@@ -16,6 +16,8 @@ const useAudioPause = (audioRef: RefObject<HTMLAudioElement>): UseAudioPause => 
   const handleKeyPressed = useCallback((e: KeyboardEvent) => {
     if (e.key !== ' ') return;
 
+    e.preventDefault();
+
     if (isPaused) {
       handlePlay();
     } else {
