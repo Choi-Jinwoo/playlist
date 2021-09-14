@@ -71,7 +71,7 @@ const AudioControls = ({
   duration,
 }: Props): JSX.Element => {
   const passedTimelineRef = useRef<HTMLDivElement>(null);
-  const scaleX = currentTime / duration;
+  const scaleX = duration === 0 ? 0 : currentTime / duration;
 
   const handleTimelineClicked = (e: MouseEvent<HTMLDivElement>) => {
     const { left } = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
