@@ -19,7 +19,11 @@ const Container = styled.div`
     padding: 0px 5px;
   }
 
-  .center, .right {
+  .center {
+    flex: 4;
+  }
+
+  .right {
     flex: 2;
   }
 `;
