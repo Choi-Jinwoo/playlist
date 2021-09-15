@@ -29,5 +29,8 @@ module.exports = {
     semi: [2, 'always'],
     'comma-dangle': [2, 'always-multiline'],
     'no-use-before-define': 'off',
+    '@typescript-eslint/explicit-function-return-type': {
+      'allowExpressions': true,
+    }
   },
 };
