@@ -26,25 +26,28 @@ const useAudioTimeline = (audioRef: RefObject<HTMLAudioElement>): UseAudioTimeli
   }, [currentTime, handleJumpTo]);
 
   useEffect(() => {
-    if (audioRef.current === null) return;
+    const audioElement = audioRef.current;
+
+    if (audioElement === null) return;
     let timer: ReturnType<typeof setTimeout> | null = null;
 
     const onAudioLoaded = () => {
-      if (audioRef.current === null) return;
-
-      setDuration(audioRef.current.duration);
+      setDuration(audioElement.duration);
 
       timer = setInterval(() => {
-        if (audioRef.current === null) return;
-        setCurrentTime(audioRef.current.currentTime);
+        if (audioElement === null) return;
+        setCurrentTime(audioElement.currentTime);
       }, TIMELINE_SYNC_INTERVAL);
     };
 
-    audioRef.current.onloadeddata = onAudioLoaded;
+    audioElement.addEventListener('loadeddata', onAudioLoaded);
 
     return () => {
-      if (timer === null) return;
-      clearInterval(timer);
+      if (timer !== null) {
+        clearInterval(timer);
+      }
+
+      removeEventListener('loadeddata', onAudioLoaded);
     };
   }, [audioRef]);
 
