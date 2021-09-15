@@ -20,10 +20,10 @@ const Source = styled.source``;
 
 const Player = (): JSX.Element => {
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  const currentMusic = useSelector((state: RootState) => state.music.currentMusic);
   const [isPaused, handlePause, handlePlay] = useAudioPause(audioRef);
   const [currentTime, duration, handleJumpTo] = useAudioTimeline(audioRef);
+
+  const currentMusic = useSelector((state: RootState) => state.music.currentMusic);
 
   const handleAutoPaused = () => {
     if (!isPaused) {

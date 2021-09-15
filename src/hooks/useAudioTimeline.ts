@@ -1,4 +1,6 @@
 import { RefObject, useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { toNextMusic } from '../actions/music';
 
 const KEYS = {
   BACK: 'ArrowLeft',
@@ -13,6 +15,7 @@ type UseAudioTimeline = [number, number, (second: number) => void];
 const useAudioTimeline = (audioRef: RefObject<HTMLAudioElement>): UseAudioTimeline => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const dispatch = useDispatch();
 
   const handleJumpTo = useCallback((second: number) => {
     if (audioRef.current === null) return;
@@ -39,6 +42,7 @@ const useAudioTimeline = (audioRef: RefObject<HTMLAudioElement>): UseAudioTimeli
     }
   }, [currentTime, handleJumpTo]);
 
+  // audio가 loaded되면 timeline 동기화 timer 설정
   useEffect(() => {
     const audioElement = audioRef.current;
 
@@ -65,13 +69,23 @@ const useAudioTimeline = (audioRef: RefObject<HTMLAudioElement>): UseAudioTimeli
     };
   }, [audioRef]);
 
+  // audio관련 window event listener 등록
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPressed);
 
     return () => window.removeEventListener('keydown', handleKeyPressed);
   }, [handleKeyPressed]);
 
+  // audio가 끝나면 다음곡으로 이동
+  useEffect(() => {
+    if (currentTime >= duration) {
+      dispatch(toNextMusic());
+    }
+  }, [currentTime, duration]);
+
+
   return [currentTime, duration, handleJumpTo];
+
 };
 
 export default useAudioTimeline;
