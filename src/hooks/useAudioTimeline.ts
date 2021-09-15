@@ -1,5 +1,10 @@
 import { RefObject, useCallback, useEffect, useState } from 'react';
 
+const KEYS = {
+  BACK: 'ArrowLeft',
+  FORWARD: 'ArrowRight',
+};
+
 const TIMELINE_SYNC_INTERVAL = 500;
 const SKIP_SECONDS = 5;
 
@@ -20,9 +25,9 @@ const useAudioTimeline = (audioRef: RefObject<HTMLAudioElement>): UseAudioTimeli
     e.preventDefault();
 
     switch (e.key) {
-      case 'ArrowLeft':
+      case KEYS.BACK:
         return handleJumpTo(currentTime - SKIP_SECONDS);
-      case 'ArrowRight':
+      case KEYS.FORWARD:
         return handleJumpTo(currentTime + SKIP_SECONDS);
     }
   }, [currentTime, handleJumpTo]);
