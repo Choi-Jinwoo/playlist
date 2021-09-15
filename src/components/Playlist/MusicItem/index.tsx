@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { select } from '../../../actions/music';
 import { Music } from '../../../models/music';
 import Text from '../../common/Text';
 
@@ -51,9 +53,14 @@ type Props = {
 
 const MusicItem = ({ music }: Props): JSX.Element => {
   const { title, singer, thumbnail } = music;
+  const dispatch = useDispatch();
+
+  const handleOnClick = () => {
+    dispatch(select(music));
+  };
 
   return (
-    <Container>
+    <Container onClick={handleOnClick}>
       <ThumbnailWrapper>
         <Thumbnail src={thumbnail} />
       </ThumbnailWrapper>
