@@ -52,7 +52,9 @@ const useAudioPause = (audioRef: RefObject<HTMLAudioElement>): UseAudioPause => 
     const onAudioLoaded = () => {
       // 첫 렌더링 시 google auto play policy로 인해 재생 실패
       audioElement.play()
-        .catch();
+        .catch(() => {
+          // 첫 렌더링
+        });
     };
 
     audioElement.addEventListener('loadeddata', onAudioLoaded);
