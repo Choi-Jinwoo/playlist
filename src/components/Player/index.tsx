@@ -41,13 +41,17 @@ const Player = (): JSX.Element => {
   const audioSource = currentMusic?.audioSource ?? '';
 
   useEffect(() => {
-    audioRef.current?.load();
-    audioRef.current?.play();
+    if (audioRef.current === null) return;
+    audioRef.current.load();
   }, [audioSource]);
 
   return (
     <Container>
-      <Audio ref={audioRef} hidden={true} onPause={handleAutoPaused} onPlay={handleAutoPlay} >
+      <Audio
+        ref={audioRef}
+        hidden={true}
+        onPause={handleAutoPaused}
+        onPlay={handleAutoPlay} >
         <Source src={audioSource} />
       </Audio>
       <CDPlayer isPaused={isPaused} thumbnail={thumbnail} />
