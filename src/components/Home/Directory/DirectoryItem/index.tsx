@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import styled, { keyframes } from 'styled-components';
 import { Directory } from '../../../../models/directory';
 import theme from '../../../../styles/theme';
@@ -105,9 +106,15 @@ type Props = {
 }
 
 const DirectoryItem = ({ sequence, directory }: Props): JSX.Element => {
-  const { title, description, thumbnail } = directory;
+  const { id, title, description, thumbnail } = directory;
+  const history = useHistory();
+
+  const handleOnClick = () => {
+    history.push(`/player/${id}`);
+  }
+
   return (
-    <Container sequence={sequence}>
+    <Container sequence={sequence} onClick={handleOnClick}>
       <CoverImage src={thumbnail} />
       <CoverBackground />
       <ContentsWrapper>
