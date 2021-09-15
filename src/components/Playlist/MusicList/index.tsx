@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import styled from 'styled-components';
 import useMusics from '../../../hooks/useMusics';
 import theme from '../../../styles/theme';
+import LoadingIndicator from '../../common/LoadingIndicator';
 import Text from '../../common/Text';
 import MusicItem from '../MusicItem';
 
@@ -31,9 +32,10 @@ const MusicList = (): JSX.Element => {
 
   if (musics === null) {
     return (
-      <div>로딩 중...</div>
+      <LoadingIndicator />
     )
   }
+
   const MusicItems = musics.map(music => <MusicItem key={music.id} music={music} />);
 
   return (
