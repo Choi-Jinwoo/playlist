@@ -6,13 +6,14 @@ import Text from '../../../common/Text';
 import theme from '../../../../styles/theme';
 
 const Container = styled.div`
+  padding: 60px 0px;
 `;
 
 const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 60px 0px;
+  margin-bottom: 60px;
 `;
 
 const ListWrapper = styled.div`
