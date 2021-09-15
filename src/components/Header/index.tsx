@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FaList } from 'react-icons/fa';
 import DirectoryList from '../Home/Directory/DirectoryList';
 import useModal from '../../hooks/useModal';
+import { useParams } from 'react-router';
 
 const fadeIn = keyframes`
   from {
@@ -56,8 +57,17 @@ const DirectoryListWrapper = styled.div`
   }
 `;
 
+type Params = {
+  id: string;
+};
+
 const Header = (): JSX.Element => {
-  const [isDirectoriesOpen, handleOpenDirectories] = useModal(false, 'directory-list-wrapper');
+  const { id } = useParams<Params>();
+  const [isDirectoriesOpen, handleOpenDirectories, handleCloseDirectories] = useModal(false, 'directory-list-wrapper');
+
+  useEffect(() => {
+    handleCloseDirectories();
+  }, [id])
 
   return (
     <Container>
