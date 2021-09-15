@@ -25,6 +25,7 @@ const useAudioPause = (audioRef: RefObject<HTMLAudioElement>): UseAudioPause => 
     }
   }, [isPaused]);
 
+  // isPaused 상태 변경 시 audio element에 적용
   useEffect(() => {
     if (audioRef.current === null) return;
 
@@ -35,11 +36,31 @@ const useAudioPause = (audioRef: RefObject<HTMLAudioElement>): UseAudioPause => 
     }
   }, [audioRef, isPaused]);
 
+  // keyboard event listener 등록
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPressed);
 
     return () => window.removeEventListener('keydown', handleKeyPressed);
   }, [handleKeyPressed]);
+
+  // audio loadeddata event listener 등록
+  useEffect(() => {
+    const audioElement = audioRef.current;
+
+    if (audioElement === null) return;
+
+    const onAudioLoaded = () => {
+      // 첫 렌더링 시 google auto play policy로 인해 재생 실패
+      audioElement.play()
+        .catch();
+    };
+
+    audioElement.addEventListener('loadeddata', onAudioLoaded);
+
+    return () => {
+      audioElement.removeEventListener('loadeddata', onAudioLoaded);
+    };
+  }, [audioRef]);
 
   return [isPaused, handlePause, handlePlay];
 };
