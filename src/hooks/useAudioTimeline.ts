@@ -22,12 +22,12 @@ const useAudioTimeline = (audioRef: RefObject<HTMLAudioElement>): UseAudioTimeli
   }, [audioRef]);
 
   const handleKeyPressed = useCallback((e: KeyboardEvent) => {
-    e.preventDefault();
-
     switch (e.key) {
       case KEYS.BACK:
+        e.preventDefault();
         return handleJumpTo(currentTime - SKIP_SECONDS);
       case KEYS.FORWARD:
+        e.preventDefault();
         return handleJumpTo(currentTime + SKIP_SECONDS);
     }
   }, [currentTime, handleJumpTo]);
