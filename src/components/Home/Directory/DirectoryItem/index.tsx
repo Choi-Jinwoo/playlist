@@ -120,7 +120,6 @@ const DirectoryItem = ({ sequence, directory }: Props): JSX.Element => {
         </TitleWrapper>
         <Text
           margin={{ top: 10 }}
-          size={theme.fontSize.medium}
           color={theme.color.main2}
         >{description}</Text>
       </ContentsWrapper>
