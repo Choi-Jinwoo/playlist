@@ -1,8 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { FaList } from 'react-icons/fa';
 import DirectoryList from '../Home/Directory/DirectoryList';
 import useModal from '../../hooks/useModal';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translate(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0px);
+  }
+`;
 
 const Container = styled.header`
   display: flex;
@@ -37,6 +49,7 @@ const DirectoryListWrapper = styled.div`
   padding: 20px 60px;
   height: 95%;
   overflow: auto;
+  animation: ${fadeIn} 0.5s;
 
   & > * {
     width: ${props => props.theme.innerWidth.desktop};
