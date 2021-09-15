@@ -6,21 +6,17 @@ import { RootState } from '../reducers';
 import data from '../assets/data/data.json';
 import { Directory } from '../models/directory';
 
-type UseMusics = [Music[] | null];
+type UseMusics = [Music[] | null, (id: string) => void];
 
-const useMusics = (directoryId: string): UseMusics => {
+const useMusics = (): UseMusics => {
   const musics = useSelector((state: RootState) => state.music.musics);
   const dispatch = useDispatch();
 
-  const handleFetch = async () => {
+  const handleFetch = (directoryId: string) => {
     const directory = data.directories.find((directory: Directory) => directory.id === directoryId);
     if (directory === undefined) return;
     dispatch(initMusics(directory.musics));
   };
-
-  useEffect(() => {
-    handleFetch();
-  }, []);
 
   useEffect(() => {
     if (musics !== null && musics.length >= 0) {
@@ -28,7 +24,7 @@ const useMusics = (directoryId: string): UseMusics => {
     }
   }, [dispatch, musics]);
 
-  return [musics];
+  return [musics, handleFetch];
 };
 
 export default useMusics;
