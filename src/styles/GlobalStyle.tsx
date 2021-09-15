@@ -1,9 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import theme from './theme';
+import fonts from './fonts';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  ${fonts}
 
   body {
     font-family: Interop, sans-serif;

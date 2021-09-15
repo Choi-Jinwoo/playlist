@@ -12,6 +12,7 @@
     "@babel/preset-react": "^7.14.5",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
+    "@types/react-icons": "^3.0.0",
     "@types/react-redux": "^7.1.18",
     "@types/react-router-dom": "^5.1.8",
     "@types/redux": "^3.6.0",
@@ -28,6 +29,7 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "style-loader": "^3.2.1",
     "ts-loader": "^9.2.5",
@@ -37,7 +39,6 @@
     "webpack-dev-server": "^4.2.0"
   },
   "dependencies": {
-    "@types/react-icons": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
