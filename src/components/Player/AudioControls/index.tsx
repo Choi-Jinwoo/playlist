@@ -1,11 +1,12 @@
 import React, { MouseEvent, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Text from '../../common/Text';
-import { FaPlay, FaPause } from 'react-icons/fa';
+import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa';
 import theme from '../../../styles/theme';
 import { seconds2MinuteSeconds } from '../../../utils/formatter';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../reducers';
+import { toNextMusic, toPreviousMusic } from '../../../actions/music';
 
 const Container = styled.div`
   display: flex;
@@ -21,8 +22,10 @@ const ButtonControlsWrapper = styled.div`
   justify-content: center;
 
   .icon {
+    font-size: ${props => props.theme.fontSize.large};
     cursor: pointer;
     color: ${props => props.theme.color.main1};
+    margin: 0px 15px;
   }
 `;
 
@@ -75,6 +78,7 @@ const AudioControls = ({
   const passedTimelineRef = useRef<HTMLDivElement>(null);
   const scaleX = duration === 0 ? 0 : currentTime / duration;
   const currentMusic = useSelector((state: RootState) => state.music.currentMusic);
+  const dispatch = useDispatch();
 
   const handleTimelineClicked = (e: MouseEvent<HTMLDivElement>) => {
     const { left } = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
@@ -82,6 +86,14 @@ const AudioControls = ({
     const time = (x / 500) * duration;
     handleJumpTo(time);
   };
+
+  const handleNextMusic = () => {
+    dispatch(toNextMusic())
+  }
+
+  const handlePreviousMusic = () => {
+    dispatch(toPreviousMusic())
+  }
 
   useEffect(() => {
     if (passedTimelineRef.current === null) return;
@@ -95,9 +107,12 @@ const AudioControls = ({
   return (
     <Container>
       <ButtonControlsWrapper>
+        <FaBackward className="icon" onClick={handlePreviousMusic} />
         {isPaused
           ? <FaPlay className="icon" onClick={handlePlay} />
           : <FaPause className="icon" onClick={handlePause} />}
+
+        <FaForward className="icon" onClick={handleNextMusic} />
       </ButtonControlsWrapper>
 
       <TimelineWrapper>
