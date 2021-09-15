@@ -107,13 +107,14 @@ type Props = {
 }
 
 const DirectoryItem = ({ sequence, directory }: Props): JSX.Element => {
-  const { id, title, description, thumbnail } = directory;
-  const history = useHistory();
+  const { id, title, description, thumbnail, musics } = directory;
+
+  const coverImage = thumbnail.length === 0 && musics.length > 0 ? musics[0].thumbnail : thumbnail;
 
   return (
     <Link to={`/player/${id}`}>
       <Container sequence={sequence}>
-        <CoverImage src={thumbnail} />
+        <CoverImage src={coverImage} />
         <CoverBackground />
         <ContentsWrapper>
           <TitleWrapper>
