@@ -45,7 +45,9 @@ module.exports = {
     filename: '[name].[chunkhash].js',
     publicPath: '/',
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, './public/index.html'),
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './public/index.html'),
+    })
+  ],
 };
