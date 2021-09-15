@@ -7,5 +7,16 @@ module.exports = merge(webpackConfig, {
   mode: 'production',
   plugins: [
     new CleanWebpackPlugin(),
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
 });
