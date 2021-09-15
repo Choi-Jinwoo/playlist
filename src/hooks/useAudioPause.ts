@@ -1,9 +1,10 @@
-import { RefObject, useCallback, useEffect, useState } from 'react';
+import { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 
 type UseAudioPause = [boolean, () => void, () => void];
 
 const useAudioPause = (audioRef: RefObject<HTMLAudioElement>): UseAudioPause => {
   const [isPaused, setIsPaused] = useState(true);
+  const isFirstRender = useRef(true);
 
   const handlePause = () => {
     setIsPaused(true);
@@ -50,11 +51,9 @@ const useAudioPause = (audioRef: RefObject<HTMLAudioElement>): UseAudioPause => 
     if (audioElement === null) return;
 
     const onAudioLoaded = () => {
-      // 첫 렌더링 시 google auto play policy로 인해 재생 실패
-      audioElement.play()
-        .catch(() => {
-          // 첫 렌더링
-        });
+      if (!isFirstRender.current) {
+        audioElement.play()
+      }
     };
 
     audioElement.addEventListener('loadeddata', onAudioLoaded);
