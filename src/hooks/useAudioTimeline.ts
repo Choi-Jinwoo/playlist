@@ -17,9 +17,16 @@ const useAudioTimeline = (audioRef: RefObject<HTMLAudioElement>): UseAudioTimeli
   const handleJumpTo = useCallback((second: number) => {
     if (audioRef.current === null) return;
 
-    audioRef.current.currentTime = second;
-    setCurrentTime(second);
-  }, [audioRef]);
+    let changedTime = second;
+    if (second < 0) {
+      changedTime = 0;
+    } else if (second > duration) {
+      changedTime = duration;
+    }
+
+    audioRef.current.currentTime = changedTime;
+    setCurrentTime(changedTime);
+  }, [audioRef, duration]);
 
   const handleKeyPressed = useCallback((e: KeyboardEvent) => {
     switch (e.key) {
