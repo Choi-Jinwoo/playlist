@@ -1,9 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { select } from '../../../actions/music';
 import { Music } from '../../../models/music';
+import { RootState } from '../../../reducers';
 import Text from '../../common/Text';
+import { FaPlay } from 'react-icons/fa';
 
 const Container = styled.div`
   display: flex;
@@ -47,17 +49,24 @@ const Thumbnail = styled.img`
   object-fit: cover;
 `;
 
+const PlayingWrapper = styled.div`
+  color: ${props => props.theme.color.main1};
+`;
+
 type Props = {
   music: Music;
 }
 
 const MusicItem = ({ music }: Props): JSX.Element => {
-  const { title, singer, thumbnail } = music;
+  const { id, title, singer, thumbnail } = music;
+  const currentMusic = useSelector((state: RootState) => state.music.currentMusic);
   const dispatch = useDispatch();
 
   const handleOnClick = () => {
     dispatch(select(music));
   };
+
+  const isSelected = id === currentMusic?.id;
 
   return (
     <Container onClick={handleOnClick}>
@@ -66,6 +75,9 @@ const MusicItem = ({ music }: Props): JSX.Element => {
       </ThumbnailWrapper>
       <Text className="center">{title}</Text>
       <Text className="right">{singer}</Text>
+      <PlayingWrapper>
+        {isSelected && <FaPlay />}
+      </PlayingWrapper>
     </Container>
   );
 };
