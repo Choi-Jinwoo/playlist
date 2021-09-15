@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
 import useMusics from '../../../hooks/useMusics';
@@ -28,7 +28,11 @@ type Params = {
 
 const MusicList = (): JSX.Element => {
   const { id } = useParams<Params>();
-  const [musics] = useMusics(id);
+  const [musics, handleFetch] = useMusics();
+
+  useEffect(() => {
+    handleFetch(id);
+  }, [id]);
 
   if (musics === null) {
     return (
