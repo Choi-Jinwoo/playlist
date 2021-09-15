@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router';
 import styled from 'styled-components';
 import useMusics from '../../../hooks/useMusics';
 import theme from '../../../styles/theme';
@@ -20,8 +21,13 @@ const ListWrapper = styled.div`
   margin-top: 40px;
 `;
 
+type Params = {
+  id: string;
+}
+
 const MusicList = (): JSX.Element => {
-  const [musics] = useMusics();
+  const { id } = useParams<Params>();
+  const [musics] = useMusics(id);
 
   if (musics === null) {
     return (
