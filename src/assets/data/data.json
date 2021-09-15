@@ -1,0 +1,19 @@
+{
+  "directories": [
+    {
+      "id": "499eee38-3dcd-40b4-b3b7-0bb41064a2df",
+      "title": "크리스마스 캐롤",
+      "description": "크리스마스에 들을 만한 캐롤 모음",
+      "thumbnail": "https://images.unsplash.com/photo-1608545533444-da0449db4039?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2hyaXNtYXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+      "musics": [
+        {
+          "id": "28db472d-8abd-4681-a951-d194bdfebe8e",
+          "audioSource": "/music/santa-tell-me.mp3",
+          "title": "Santa Tell Me",
+          "singer": "Ariana Grande",
+          "thumbnail": "https://i1.sndcdn.com/artworks-000194336305-f4shyd-t500x500.jpg"
+        }
+      ]
+    }
+  ]
+}
