@@ -17,6 +17,8 @@ const useAudioTimeline = (audioRef: RefObject<HTMLAudioElement>): UseAudioTimeli
   }, [audioRef]);
 
   const handleKeyPressed = useCallback((e: KeyboardEvent) => {
+    e.preventDefault();
+
     switch (e.key) {
       case 'ArrowLeft':
         return handleJumpTo(currentTime - SKIP_SECONDS);
