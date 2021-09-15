@@ -42,6 +42,7 @@ const Player = (): JSX.Element => {
 
   useEffect(() => {
     audioRef.current?.load();
+    audioRef.current?.play();
   }, [audioSource]);
 
   return (
