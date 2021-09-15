@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { select } from '../../../actions/music';
+import { selectMusic } from '../../../actions/music';
 import { Music } from '../../../models/music';
 import { RootState } from '../../../reducers';
 import Text from '../../common/Text';
@@ -63,7 +63,7 @@ const MusicItem = ({ music }: Props): JSX.Element => {
   const dispatch = useDispatch();
 
   const handleOnClick = () => {
-    dispatch(select(music));
+    dispatch(selectMusic(music));
   };
 
   const isSelected = id === currentMusic?.id;

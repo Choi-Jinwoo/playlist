@@ -23,6 +23,11 @@ const ListWrapper = styled.div`
 const MusicList = (): JSX.Element => {
   const [musics] = useMusics();
 
+  if (musics === null) {
+    return (
+      <div>로딩 중...</div>
+    )
+  }
   const MusicItems = musics.map(music => <MusicItem key={music.id} music={music} />);
 
   return (

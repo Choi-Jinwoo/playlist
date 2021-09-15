@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { select } from '../actions/music';
+import { useDispatch, useSelector } from 'react-redux';
+import { initMusics, selectMusic } from '../actions/music';
 import { Music } from '../models/music';
+import { RootState } from '../reducers';
 
-type UseMusics = [Music[]];
+type UseMusics = [Music[] | null];
 
 const useMusics = (): UseMusics => {
-  const [musics, setMusics] = useState<Music[]>([]);
+  const musics = useSelector((state: RootState) => state.music.musics);
   const dispatch = useDispatch();
 
   const handleFetch = async () => {
-    setMusics([
+    dispatch(initMusics([
       {
         id: '1',
         title: 'Santa tell me',
@@ -23,7 +24,7 @@ const useMusics = (): UseMusics => {
         title: '미리 메리 크리스마스',
         singer: '아이유',
         thumbnail: 'http://news.imaeil.com/inc/photos/2019/05/03/2019050311475036152_l.jpg',
-        audioSource: '',
+        audioSource: '/music/merry-christmas.mp3',
       },
       {
         id: '3',
@@ -53,7 +54,7 @@ const useMusics = (): UseMusics => {
         thumbnail: 'http://news.imaeil.com/inc/photos/2019/05/03/2019050311475036152_l.jpg',
         audioSource: '',
       },
-    ]);
+    ]));
   };
 
   useEffect(() => {
@@ -61,8 +62,8 @@ const useMusics = (): UseMusics => {
   }, []);
 
   useEffect(() => {
-    if (musics.length >= 0) {
-      dispatch(select(musics[0]));
+    if (musics !== null && musics.length >= 0) {
+      dispatch(selectMusic(musics[0]));
     }
   }, [dispatch, musics]);
 
