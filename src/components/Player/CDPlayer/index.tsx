@@ -13,12 +13,22 @@ const rotate = keyframes`
   }
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
+
 type CDProps = {
   isPaused: boolean;
 }
 
 const CD = styled.div<CDProps>`
-  background-color: ${props => props.theme.color.black};
+  background-color: ${props => props.theme.color.white};
   position: relative;
   width: 400px;
   height: 400px;
@@ -34,6 +44,7 @@ const CDImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  animation: ${fadeIn} 1s;
 `;
 
 const HOLE_SIZE = 120;
@@ -48,6 +59,7 @@ const CDHole = styled.div`
   height: ${HOLE_SIZE}px;
   border-radius: 50%;
   border: 16px solid ${props => props.theme.color.main1}80;
+  z-index: 2;
 `;
 
 type Props = {
