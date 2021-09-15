@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { Directory } from '../../../../models/directory';
 import theme from '../../../../styles/theme';
@@ -109,28 +110,26 @@ const DirectoryItem = ({ sequence, directory }: Props): JSX.Element => {
   const { id, title, description, thumbnail } = directory;
   const history = useHistory();
 
-  const handleOnClick = () => {
-    history.push(`/player/${id}`);
-  }
-
   return (
-    <Container sequence={sequence} onClick={handleOnClick}>
-      <CoverImage src={thumbnail} />
-      <CoverBackground />
-      <ContentsWrapper>
-        <TitleWrapper>
+    <Link to={`/player/${id}`}>
+      <Container sequence={sequence}>
+        <CoverImage src={thumbnail} />
+        <CoverBackground />
+        <ContentsWrapper>
+          <TitleWrapper>
+            <Text
+              size={theme.fontSize.xxLarge}
+              color={theme.color.white2}
+            >{title}</Text>
+            <TextEmphasizeBackground />
+          </TitleWrapper>
           <Text
-            size={theme.fontSize.xxLarge}
-            color={theme.color.white2}
-          >{title}</Text>
-          <TextEmphasizeBackground />
-        </TitleWrapper>
-        <Text
-          margin={{ top: 10 }}
-          color={theme.color.main2}
-        >{description}</Text>
-      </ContentsWrapper>
-    </Container >
+            margin={{ top: 10 }}
+            color={theme.color.main2}
+          >{description}</Text>
+        </ContentsWrapper>
+      </Container >
+    </Link >
   );
 };
 
