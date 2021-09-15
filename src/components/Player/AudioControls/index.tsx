@@ -4,6 +4,8 @@ import Text from '../../common/Text';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import theme from '../../../styles/theme';
 import { seconds2MinuteSeconds } from '../../../utils/formatter';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../reducers';
 
 const Container = styled.div`
   display: flex;
@@ -72,6 +74,7 @@ const AudioControls = ({
 }: Props): JSX.Element => {
   const passedTimelineRef = useRef<HTMLDivElement>(null);
   const scaleX = duration === 0 ? 0 : currentTime / duration;
+  const currentMusic = useSelector((state: RootState) => state.music.currentMusic);
 
   const handleTimelineClicked = (e: MouseEvent<HTMLDivElement>) => {
     const { left } = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
@@ -84,6 +87,10 @@ const AudioControls = ({
     if (passedTimelineRef.current === null) return;
     passedTimelineRef.current.style.transform = `scaleX(${scaleX})`;
   }, [scaleX]);
+
+  useEffect(() => {
+    handleJumpTo(0);
+  }, [currentMusic, handleJumpTo]);
 
   return (
     <Container>
