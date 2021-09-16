@@ -17,9 +17,27 @@ const fadeIn = keyframes`
   }
 `;
 
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+    transform: translate(0px);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(20px);
+    visibility: hidden;
+  }
+`;
+
 const Container = styled.header`
   display: flex;
   justify-content: flex-end;
+
+  .disappear {
+    visibility: hidden;
+    animation: ${fadeOut} 0.25s;
+  }
 `;
 
 const MenuListWrapper = styled.div`
@@ -38,14 +56,13 @@ const MenuListWrapper = styled.div`
 const DirectoriesButton = styled(FaList)`
   cursor: pointer;
   color: ${props => props.theme.color.main1};
-
 `;
 
 const DirectoryListWrapper = styled.div`
   position: absolute;
   left: 40px;
   z-index: 10;
-  background-color: ${props => props.theme.color.black}90;
+  background-color: ${props => props.theme.color.black}a0;
   border-radius: 8px;
   padding: 20px 60px;
   height: 95%;
@@ -75,11 +92,9 @@ const Header = (): JSX.Element => {
         <DirectoriesButton onClick={handleOpenDirectories} />
       </MenuListWrapper>
 
-      {isDirectoriesOpen &&
-        <DirectoryListWrapper className="directory-list-wrapper">
-          <DirectoryList />
-        </DirectoryListWrapper>
-      }
+      <DirectoryListWrapper className={`directory-list-wrapper ${isDirectoriesOpen ? 'appear' : 'disappear'}`}>
+        <DirectoryList mode='dark' />
+      </DirectoryListWrapper>
     </Container>
   )
 }
