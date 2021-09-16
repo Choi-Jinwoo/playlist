@@ -5,7 +5,7 @@ import DirectoryList from '../components/Home/Directory/DirectoryList';
 const HomePage = (): JSX.Element => {
   return (
     <PageTemplate>
-      <DirectoryList />
+      <DirectoryList mode='light' />
     </PageTemplate>
   );
 };

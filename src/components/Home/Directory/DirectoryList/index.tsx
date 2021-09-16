@@ -23,8 +23,14 @@ const ListWrapper = styled.div`
   row-gap: 20px;
 `;
 
-const DirectoryList = (): JSX.Element => {
+type Props = {
+  mode: 'dark' | 'light';
+}
+
+const DirectoryList = ({ mode = 'light' }: Props): JSX.Element => {
   const [directories] = useDirectories();
+
+  const titleColor = mode === 'dark' ? theme.color.white : theme.color.main1;
 
   const DirectoryItems = directories
     .map((directory, index) => <DirectoryItem key={directory.id} sequence={index} directory={directory} />);
@@ -32,7 +38,7 @@ const DirectoryList = (): JSX.Element => {
   return (
     <Container>
       <TitleWrapper>
-        <Text size={theme.fontSize.xxxLarge} color={theme.color.main1} weight='bold'>Playlist</Text>
+        <Text size={theme.fontSize.xxxLarge} color={titleColor} weight='bold'>Playlist</Text>
       </TitleWrapper>
       <ListWrapper>
         {DirectoryItems}
