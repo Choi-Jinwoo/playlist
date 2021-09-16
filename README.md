@@ -54,3 +54,8 @@ Local 환경에서 사용하기위해선 [설치하기](https://github.com/Choi-
 
 <img width="600" alt="스크린샷 2021-09-16 오전 10 41 21" src="https://user-images.githubusercontent.com/49791336/133535605-1e2e79d8-52ed-47bc-8a76-f1493813d691.png">
 
+#### 다른 플레이리스트 이동
+> 메뉴버튼을 통해 다른 플레이리스트로 이동
+
+![Sep-16-2021 11-04-12](https://user-images.githubusercontent.com/49791336/133537403-086a4104-ccc3-4944-ae4d-faf0228f2471.gif)
+
