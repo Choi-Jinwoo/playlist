@@ -53,6 +53,8 @@ const useAudioPause = (audioRef: RefObject<HTMLAudioElement>): UseAudioPause => 
     const onAudioLoaded = () => {
       if (!isFirstRender.current) {
         audioElement.play()
+      } else {
+        isFirstRender.current = false;
       }
     };
 
