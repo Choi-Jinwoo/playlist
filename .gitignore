@@ -1,0 +1,12 @@
+/node_modules/
+/dist/
+
+.DS_Store
+.vscode
+.env.*
+
+yarn-debug.log*
+yarn-error.log*
+
+public/music/*.mp3
+src/assets/data/data.json
