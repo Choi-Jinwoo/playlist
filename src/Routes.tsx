@@ -6,7 +6,7 @@ import PlayerPage from './pages/PlayerPage';
 
 const Routes = (): JSX.Element => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Route exact path="/" component={HomePage} />
       <Route exact path="/player/:id" component={PlayerPage} />
     </BrowserRouter>
