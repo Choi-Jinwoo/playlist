@@ -6,6 +6,9 @@ const webpackConfig = require('./webpack.config');
 
 module.exports = merge(webpackConfig, {
   mode: 'production',
+  output: {
+    publicPath: './',
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin({
