@@ -7,6 +7,9 @@
   ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
   ![webpack](https://img.shields.io/badge/-webpack-7B7B7B?style=for-the-badge&logo=webpack)
   ![Babel](https://img.shields.io/badge/-Babel-E4C000?style=for-the-badge&logo=babel&logoColor=ffffff)
+
+### [LIVE DEMO](https://choi-jinwoo.github.io/playlist/)
+  
 </div>
 
 ### LIVE DEMO
