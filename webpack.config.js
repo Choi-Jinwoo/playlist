@@ -1,8 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
   entry: path.resolve(__dirname, './src/index.tsx'),
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -44,6 +44,7 @@ module.exports = {
     filename: '[name].[chunkhash].js',
   },
   plugins: [
+    new webpack.EnvironmentPlugin(['PUBLIC_URL']),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './public/index.html'),
       favicon: './public/favicon.png',
