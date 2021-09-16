@@ -8,7 +8,7 @@
   ![webpack](https://img.shields.io/badge/-webpack-7B7B7B?style=for-the-badge&logo=webpack)
   ![Babel](https://img.shields.io/badge/-Babel-E4C000?style=for-the-badge&logo=babel&logoColor=ffffff)
 
-### [LIVE DEMO](https://cocky-archimedes-671143.netlify.app)
+### [LIVE DEMO](https://choi-jinwoo-playlist.netlify.app)
   
 </div>
 
