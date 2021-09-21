@@ -1,8 +1,12 @@
 const theme = {
   deviceWidth: {
+    tablet: '768px',
+    mobile: '480px',
   },
   innerWidth: {
     desktop: '1200px',
+    tablet: '700px',
+    mobile: '450px',
   },
   color: {
     main1: '#93B5C6',
