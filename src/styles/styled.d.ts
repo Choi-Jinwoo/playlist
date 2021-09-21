@@ -3,9 +3,13 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     deviceWidth: {
+      tablet: string;
+      mobile: string;
     },
     innerWidth: {
       desktop: string;
+      tablet: string;
+      mobile: string;
     },
     color: {
       main1: string;
