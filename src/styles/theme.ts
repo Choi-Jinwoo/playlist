@@ -5,7 +5,7 @@ const theme = {
   },
   innerWidth: {
     desktop: '1200px',
-    tablet: '700px',
+    tablet: '680px',
     mobile: '450px',
   },
   color: {
