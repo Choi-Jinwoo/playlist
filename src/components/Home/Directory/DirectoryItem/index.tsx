@@ -1,9 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { Directory } from '../../../../models/directory';
 import theme from '../../../../styles/theme';
+import { composeMediaQuery } from '../../../../utils/css';
 import Text from '../../../common/Text';
 
 const fadeIn = keyframes`
@@ -33,6 +33,10 @@ const Container = styled.div<ContainerProps>`
   animation: ${fadeIn} 0.8s;
   animation-delay: ${props => props.sequence * 0.1}s;
   animation-fill-mode: forwards;
+
+  ${composeMediaQuery({
+    tablet: `width: 320px`,
+  })}
 
   &:hover {
     .cover-image {

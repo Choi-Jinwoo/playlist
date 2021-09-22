@@ -4,6 +4,7 @@ import useDirectories from '../../../../hooks/useDirectories';
 import DirectoryItem from '../DirectoryItem';
 import Text from '../../../common/Text';
 import theme from '../../../../styles/theme';
+import { composeMediaQuery } from '../../../../utils/css';
 
 const Container = styled.div`
   padding: 60px 0px;
@@ -21,6 +22,11 @@ const ListWrapper = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   row-gap: 20px;
+
+  ${composeMediaQuery({
+    tablet: `grid-template-columns: 1fr 1fr;`,
+    mobile: `grid-template-columns: 1fr;`,
+  })}
 `;
 
 type Props = {
